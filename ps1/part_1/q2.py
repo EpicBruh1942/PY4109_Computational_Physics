@@ -1,4 +1,4 @@
-from p1 import Sample_and_DFT
+from q1 import Sample_and_DFT
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -18,7 +18,7 @@ plt.axvline(x=4.0, color='red', linestyle='--', label='K' \
 'nown Period of cos(2π2t) + sin(2π4t)')
 plt.title('Fourier transform of cos(2π2t) + sin(2π4t) for t = 4 and dt = 0.5')
 plt.legend()
-plt.savefig('PS1P2_DFT_1.png') 
+plt.savefig('PS1P1Q2_DFT_1.png') 
 
 plt.figure()
 plt.plot(f2, y2, marker='o')
@@ -30,7 +30,7 @@ plt.axvline(x=4.0, color='red', linestyle='--', label='K' \
 'nown Period of cos(2π2t) + sin(2π4t)')
 plt.title('Fourier transform of cos(2π2t) + sin(2π4t) for t = 4 and dt = 0.1')
 plt.legend()
-plt.savefig('PS1P2_DFT_2.png')  
+plt.savefig('PS1P1Q2_DFT_2.png')  
 
 plt.figure()
 plt.plot(f3, y3, marker='o')
@@ -42,4 +42,4 @@ plt.axvline(x=4.0, color='red', linestyle='--', label='K' \
 'nown Period of cos(2π2t) + sin(2π4t)')
 plt.title('Fourier transform of cos(2π2t) + sin(2π4t) for t = 20 and dt = 0.1')
 plt.legend()
-plt.savefig('PS1P2_DFT_3.png')  
+plt.savefig('PS1P1Q2_DFT_3.png')  
