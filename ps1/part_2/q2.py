@@ -37,13 +37,29 @@ class photon:
 zmax = 1.0
 tmax = 10.0
 N = 100000
+mu_bins = 20
 theta_results = []
 for i in range(N):
     top_emission, theta = photon(zmax, tmax).run()
     if top_emission == True:
         theta_results.append(theta)
 print(f"{len(theta_results)} photons emitted from top")
+mu_results = np.cos(theta_results)
+edges = np.linspace(0, 1, mu_bins + 1)
+Ni = np.histogram(mu_results, bins=edges)[0]
+N_o = len(theta_results)
+mu_i = 0.5 * (edges[1:] + edges[:-1])  
 
-plt.hist(np.degrees(theta_results), bins=20)
-plt.xlabel(r"$\theta$ at exit")
+I_f = Ni * mu_bins / (2 * N_o * mu_i)
+
+
+ang_c, I_c = np.loadtxt("Chandrasekhar1960.dat", unpack=True)
+theta_i = np.degrees(np.arccos(mu_i))
+
+I_f_err = np.sqrt(Ni) * mu_bins / (2 * N_o * mu_i)
+plt.errorbar(theta_i, I_f, yerr=I_f_err, fmt='o', label=f"Monte Carlo ({N_o} photons)")
+plt.plot(ang_c, I_c, 'r-', label="Chandrasekhar (1960)")
+plt.xlabel(r"Angle from normal $\theta$ (deg)")
+plt.ylabel(r"$I/F$")
+plt.legend()
 plt.show()
