@@ -2,7 +2,7 @@
 ### Q2:Computing the DFT for y(t) = cos(2π2t) + sin(2π4t) 
 
 #taking the sample and dft function from the last question
-from q1 import Sample_and_DFT
+from PS1P1q1 import Sample_and_DFT
 import numpy as np
 import matplotlib.pyplot as plt
 #define the function cos(2π2t) + sin(2π4t)
