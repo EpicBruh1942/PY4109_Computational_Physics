@@ -1,5 +1,5 @@
 ## Problem Set 1 Problem 1:
-## Calculates a Discrete Fourier Transform of cos(2π2t)
+## Q1: Calculates a Discrete Fourier Transform of cos(2π2t)
 import matplotlib.pyplot as plt
 import numpy as np
 # Function takes in time array and corresponding amplitude
@@ -13,15 +13,15 @@ def DFT( t, y):
     for n in range(N):
         f[n] = np.sum(y*np.exp(-2*np.pi* 1j*m*(n/N)))
     return nu,f
-
+#function for cos(2π2t)
 def func(t):
     return np.cos(2*np.pi*2*t)
-
+#Samples function (ft) with params t0, t1, dt and returns its DFT
 def Sample_and_DFT(ft, t0, t1, dt):
     t = np.arange(t0,t1,dt)
     y = ft(t)
     return DFT(t,y)
-
+#
 freq, y = Sample_and_DFT(func, 0, 10, 0.1)
 y = np.abs(y)
 t = np.linspace(-10, 10, 500)
@@ -35,8 +35,9 @@ plt.savefig('PS1P1Q1_cos.png')
 #Plot of Y(f) Vs f 
 plt.figure()
 plt.plot(freq, y, marker='o')
-plt.xlabel('f')
+plt.xlabel(r"f")
 plt.ylabel('Y(f)')
+#Known period of 2 radians is labelled
 plt.axvline(x=2.0, color='red', linestyle='--', label='Known Period of cos(2π2t)')
 plt.title('Fourier transform of cos(2π2t)')
 plt.legend()

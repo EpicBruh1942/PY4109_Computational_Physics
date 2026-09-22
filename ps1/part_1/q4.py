@@ -1,7 +1,9 @@
+## Problem Set 1 Problem 1:
+## Q4: Using FFT to isolate the two main signal components in FOAqr.dat
 import numpy as np
 import numpy.fft as fft
 import matplotlib.pyplot as plt
-
+# Load Data and perform FFT
 data = np.loadtxt("FOAqr.dat")
 t = data[:,0]
 flux = data[:,1]
@@ -11,17 +13,17 @@ freq = fft.rfftfreq(len(flux), d=dt)
 
 ### Low pass filter
 F_low = Famp.copy()
-#isolate signal 1
+#isolate signal component 1
 F_low[freq>= 20] = 0
-#inverse fft performed on only signal 1 periods
+#inverse fft performed on only signal component 1 periods
 flux_low_signal = fft.irfft(F_low, n=len(flux))
 
 ### High Pass filter
 F_high = Famp.copy()
-#isolate signal 2
+#isolate signal component 2
 F_high[freq>= 80] = 0
 F_high[freq<=50] = 0
-#inverse fft performed only on signal 2 periods
+#inverse fft performed only on signal component 2 periods
 flux_high_signal = fft.irfft(F_high, n=len(flux))
 
 
@@ -34,9 +36,9 @@ ax.axvspan(0, 20, color="tab:blue", alpha=0.2, label="Signal 1 (0 - 20 per day)"
 ax.axvspan(50, 80, color="tab:red", alpha=0.2, label="Signal 2 (50 - 80 per day)")
 
 ymax = Famp.max()
-ax.text(10, 0.95 * ymax, "Signal 1", ha="center", va="top",
+ax.text(12, 2.5 * ymax, "Signal Component 1", ha="center", va="top",
         color="tab:blue", fontsize=12, fontweight="bold")
-ax.text(65, 0.95 * ymax, "Signal 2", ha="center", va="top",
+ax.text(65, 2.5 * ymax, "Signal Component 2", ha="center", va="top",
         color="tab:red", fontsize=12, fontweight="bold")
 #labels and scaling
 ax.set_xlim(0, 100)
