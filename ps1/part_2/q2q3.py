@@ -25,13 +25,12 @@ class photon:
         #setting the photon to travel for a random time between
         # 0 and tmax 
         rng = rngseed.random()
-        t = -np.log(1-rng)
-        L = t /self.tmax
+        t = -np.log(1-rng)/self.tmax
         #updating the distance after traveling t seconds
         # the direction of travel is based on theta and phi
-        self.x = self.x + L*np.sin(self.theta)*np.cos(self.phi)
-        self.y = self.y + L*np.sin(self.theta)*np.sin(self.phi)
-        self.z = self.z + L*np.cos(self.theta)
+        self.x = self.x + t*np.sin(self.theta)*np.cos(self.phi)
+        self.y = self.y + t*np.sin(self.theta)*np.sin(self.phi)
+        self.z = self.z + t*np.cos(self.theta)
     def scatter(self):
         #set the new theta and phi randomly from the equations
         #derived in q1
@@ -59,7 +58,7 @@ class photon:
 #set params
 zmax = 1.0
 tmax = 10.0
-N = 100000
+N = 10000000
 mu_bins = 20
 theta_results = []
 #run N simulations and make an array of all the 
@@ -83,10 +82,10 @@ ang_c, I_c = np.loadtxt("Chandrasekhar1960.dat", unpack=True)
 ### Q3: Determine appropriate errors for each bin
 #🦖 Gaussian error 
 I_f_err = I_f/np.sqrt(Ni)
-
+#plot the graph with the points from the histogram over the chandrasekhar graph
 plt.errorbar(theta_i, I_f, yerr=I_f_err, fmt='o', label=f"Monte Carlo ({N_o} photons)")
 plt.plot(ang_c, I_c, 'r-', label="Chandrasekhar (1960)")
 plt.xlabel(r"Angle from normal $\theta$ (deg)")
 plt.ylabel(r"$I/F$")
 plt.legend()
-plt.savefig("PS1P2q2q3.png", dpi=200)
+plt.savefig("PS1P2q2q3BIG.png", dpi=200)
