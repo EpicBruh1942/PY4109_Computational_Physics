@@ -54,11 +54,12 @@ class photon:
             return True , self.theta
         else:
             return False, self.theta
+            
 
 #set params
 zmax = 1.0
 tmax = 10.0
-N = 10000000
+N = 100000
 mu_bins = 20
 theta_results = []
 #run N simulations and make an array of all the 
@@ -80,7 +81,7 @@ theta_i = np.degrees(np.arccos(mu_i))
 #import the chandrasekhar results
 ang_c, I_c = np.loadtxt("Chandrasekhar1960.dat", unpack=True)
 ### Q3: Determine appropriate errors for each bin
-#🦖 Gaussian error 
+# Standard error from Poisson
 I_f_err = I_f/np.sqrt(Ni)
 #plot the graph with the points from the histogram over the chandrasekhar graph
 plt.errorbar(theta_i, I_f, yerr=I_f_err, fmt='o', label=f"Monte Carlo ({N_o} photons)")
@@ -88,4 +89,4 @@ plt.plot(ang_c, I_c, 'r-', label="Chandrasekhar (1960)")
 plt.xlabel(r"Angle from normal $\theta$ (deg)")
 plt.ylabel(r"$I/F$")
 plt.legend()
-plt.savefig("PS1P2q2q3BIG.png", dpi=200)
+plt.savefig("PS1P2q2q3.png", dpi=200)

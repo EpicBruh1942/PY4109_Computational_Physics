@@ -2,6 +2,7 @@
 ## Q1: Calculates a Discrete Fourier Transform of cos(2π2t)
 import matplotlib.pyplot as plt
 import numpy as np
+
 # Function takes in time array and corresponding amplitude
 # array of signal and returns decomposed signal in form of 
 # frequency array (nu) and amplitude (f) of corresponding frequency
